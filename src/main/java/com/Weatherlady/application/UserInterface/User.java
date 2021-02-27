@@ -17,19 +17,40 @@ public class User {
     @Column(nullable = false, name = "Password")
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public void registerUser(String userName, String password) {
+
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    private void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

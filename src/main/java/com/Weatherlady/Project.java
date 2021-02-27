@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class Project {
 
@@ -14,6 +15,7 @@ public class Project {
         SessionFactory sessionFactory = new Configuration()
                 .configure("persistence.cfg.xml")
                 .addAnnotatedClass(Location.class)
+                .addAnnotatedClass(User.class)
                 .buildSessionFactory();
 
         EntityManager entityManager = sessionFactory.createEntityManager();
@@ -24,13 +26,16 @@ public class Project {
 
             Location location = new Location("Kaunas", "Aukstaitija", "Lithuania");
             User edvinas = new User();
-            edvinas.setUserName("Edvinas");
-            edvinas.setPassword("123456789");
+            edvinas.registerUser("Edvinas", "123456789");
 
             entityManager.persist(location);
             entityManager.persist(edvinas);
 
             transaction.commit();
+
+            List<User> users = entityManager.createQuery("FROM User", User.class).getResultList();
+            System.out.println(users);
+
             entityManager.close();
 
     }

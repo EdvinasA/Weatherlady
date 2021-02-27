@@ -8,13 +8,12 @@ import java.util.UUID;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private UUID id;
 
     @Column(nullable = false)
     private String cityName;
 
-    @Column
     private String region;
 
     @Column(nullable = false)
