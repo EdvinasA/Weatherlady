@@ -1,24 +1,37 @@
 package com.Weatherlady.application;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
 @Table(name = "Locations")
 public class Location {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private UUID id;
-        private String locationName;
-        private String longitude;
-        private String latitude;
-        private String region;
-        private String countryName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID id;
 
-        public Location(String locationName) {
-            this.locationName = locationName;
-        }
+    private float longitude;
+
+    private float latitude;
+
+    @Column(nullable = false)
+    private String cityName;
+
+    @Column
+    private String region;
+
+    @Column(nullable = false)
+    String countryName;
+
+    public Location(float longitude, float latitude, String cityName, String region, String countryName) {
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.cityName = cityName;
+        this.region = region;
+        this.countryName = countryName;
+    }
 
     public UUID getId() {
         return id;
@@ -28,28 +41,28 @@ public class Location {
         this.id = id;
     }
 
-    public String getLocationName() {
-        return locationName;
-    }
-
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
-
-    public String getLongitude() {
+    public float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(float longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getRegion() {
@@ -68,4 +81,7 @@ public class Location {
         this.countryName = countryName;
     }
 }
+
+
+
 

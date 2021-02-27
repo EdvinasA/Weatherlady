@@ -21,7 +21,7 @@ public class Project {
 
             transaction.begin();
 
-            Location location = new Location("a");
+            Location location = new Location(121, 85, "Kaunas", "Aukstaitija", "Lithuania");
 
             entityManager.persist(location);
             transaction.commit();
