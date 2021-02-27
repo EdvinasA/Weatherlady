@@ -1,7 +1,6 @@
 package com.Weatherlady.application;
 
 import javax.persistence.*;
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -12,10 +11,6 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
-    private float longitude;
-
-    private float latitude;
-
     @Column(nullable = false)
     private String cityName;
 
@@ -25,9 +20,7 @@ public class Location {
     @Column(nullable = false)
     String countryName;
 
-    public Location(float longitude, float latitude, String cityName, String region, String countryName) {
-        this.longitude = longitude;
-        this.latitude = latitude;
+    public Location(String cityName, String region, String countryName) {
         this.cityName = cityName;
         this.region = region;
         this.countryName = countryName;
@@ -39,22 +32,6 @@ public class Location {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
     }
 
     public String getCityName() {
