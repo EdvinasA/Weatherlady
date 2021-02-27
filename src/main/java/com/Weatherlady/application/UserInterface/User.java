@@ -17,8 +17,9 @@ public class User {
     @Column(nullable = false, name = "Password")
     private String password;
 
-    public void registerUser(String userName, String password) {
-
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     public UUID getId() {
