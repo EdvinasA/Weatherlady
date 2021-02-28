@@ -1,5 +1,6 @@
 package com.Weatherlady;
 
+import com.Weatherlady.application.Controller.WeatherClient;
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Entity.User;
 import com.Weatherlady.application.Entity.Weather;
@@ -29,18 +30,18 @@ public class Project {
     public static UserRepository userRepository = new UserRepository(entityManager);
     public static LocationRepository locationRepository = new LocationRepository(entityManager);
     public static WeatherRepository weatherRepository = new WeatherRepository(entityManager);
+    public static WeatherClient weatherClient = new WeatherClient();
 
     public void run(){
             transaction.begin();
 
-            Location location = new Location("Kaunas", "Aukstaitija", "Lithuania");
-            Location location1 = new Location("Vilnius", "Aukstaitija", "Lithuania");
             LocationService locationService = new LocationService();
-            locationService.addNewLocation("Klaipėda", "Žemaitija", "Lithuania");
+            Location location = locationService.addNewLocation("Klaipėda", "Žemaitija", "Lithuania");
+            Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
+            Location location2 = locationService.addNewLocation("Kaun2as", "Aukstaitija", "Lithuania");
 
+            weatherClient.runClientInterface();
 
-            locationRepository.save(location);
-            locationRepository.save(location1);
 
             User edvinas = new User("Edvinas", "123456789");
             User rimantas = new User("Rimantas", "123456789");
