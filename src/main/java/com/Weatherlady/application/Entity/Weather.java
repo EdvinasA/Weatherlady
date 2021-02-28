@@ -1,10 +1,15 @@
 package com.Weatherlady.application.Entity;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Weather")
 public class Weather {
+
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Column(nullable = false)
     private Float Temperature;
@@ -15,13 +20,21 @@ public class Weather {
     @Column(nullable = false)
     private Float windSpeed;
 
-    @OneToMany(mappedBy = "Weather", cascade = CascadeType.ALL)
+    @ManyToOne
     private Location location;
 
     public Weather(Float temperature, String windDirection, Float windSpeed) {
         Temperature = temperature;
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Float getTemperature() {
@@ -59,9 +72,10 @@ public class Weather {
     @Override
     public String toString() {
         return "Weather{" +
-                "Temperature=" + Temperature +
-                ", windDirection=" + windDirection +
+                ", Temperature=" + Temperature +
+                ", windDirection='" + windDirection + '\'' +
                 ", windSpeed=" + windSpeed +
+                ", location=" + location.getCityName() +
                 '}';
     }
 }

@@ -20,8 +20,7 @@ public class Location implements Serializable {
     @Column(nullable = false)
     private String countryName;
 
-    @ManyToOne(targetEntity = Weather.class)
-    @JoinColumn(name = "Weather_ID")
+    @OneToMany(targetEntity = Weather.class)
     private Set<Weather> weatherList = new HashSet<>();
 
     public Location(String cityName, String region, String countryName) {
@@ -73,7 +72,7 @@ public class Location implements Serializable {
     @Override
     public String toString() {
         return "Location{" +
-                "cityName='" + cityName + '\'' +
+                ", cityName='" + cityName + '\'' +
                 ", region='" + region + '\'' +
                 ", countryName='" + countryName + '\'' +
                 '}';

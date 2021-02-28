@@ -19,6 +19,7 @@ public class Project {
             .configure("persistence.cfg.xml")
             .addAnnotatedClass(Location.class)
             .addAnnotatedClass(User.class)
+            .addAnnotatedClass(Weather.class)
             .buildSessionFactory();
 
     public static EntityManager entityManager = sessionFactory.createEntityManager();
@@ -32,24 +33,28 @@ public class Project {
             transaction.begin();
 
             Location location = new Location("Kaunas", "Aukstaitija", "Lithuania");
-            Location location1 = new Location("Vilnius", "AAAAAA", "Lithuania");
+            Location location1 = new Location("Vilnius", "Aukstaitija", "Lithuania");
+
+            locationRepository.save(location);
+            locationRepository.save(location1);
+
             User edvinas = new User("Edvinas", "123456789");
+            User rimantas = new User("Rimantas", "123456789");
+
+            userRepository.save(edvinas);
+            userRepository.save(rimantas);
+
             Weather weather = new Weather(20f, "S" ,20f);
             Weather weather1 = new Weather(22f, "W" ,80f);
 
             weather.setLocation(location);
             weather1.setLocation(location);
 
-            locationRepository.save(location);
-            userRepository.save(edvinas);
-            User rimantas = new User("Rimantas", "123456789");
-            userRepository.save(rimantas);
-            locationRepository.save(location1);
             weatherRepository.save(weather);
             weatherRepository.save(weather1);
 
             List<User> users = userRepository.findAll();
-            List<Location> locations = locationRepository.findByName("Kaunas");
+            List<Location> locations = locationRepository.findAll();
             List<Weather> weatherList = weatherRepository.findAll();
 
             System.out.println(locations);
