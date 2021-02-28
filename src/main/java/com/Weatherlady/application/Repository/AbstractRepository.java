@@ -1,4 +1,4 @@
-package com.Weatherlady.application.utils;
+package com.Weatherlady.application.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

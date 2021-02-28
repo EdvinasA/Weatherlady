@@ -1,4 +1,4 @@
-package com.Weatherlady.application.LocationInterface;
+package com.Weatherlady.application.Entity;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -17,7 +17,7 @@ public class Location {
     private String region;
 
     @Column(nullable = false)
-    String countryName;
+    private String countryName;
 
     public Location(String cityName, String region, String countryName) {
         this.cityName = cityName;
@@ -55,6 +55,15 @@ public class Location {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "cityName='" + cityName + '\'' +
+                ", region='" + region + '\'' +
+                ", countryName='" + countryName + '\'' +
+                '}';
     }
 }
 

@@ -1,4 +1,4 @@
-package com.Weatherlady.application.UserInterface;
+package com.Weatherlady.application.Entity;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -49,8 +49,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
