@@ -23,6 +23,9 @@ public class Location implements Serializable {
     @OneToMany(targetEntity = Weather.class)
     private Set<Weather> weatherList = new HashSet<>();
 
+    public Location() {
+    }
+
     public Location(String cityName, String region, String countryName) {
         this.cityName = cityName;
         this.region = region;
