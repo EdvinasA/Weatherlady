@@ -8,6 +8,7 @@ import com.Weatherlady.application.Repository.Location.LocationRepository;
 import com.Weatherlady.application.Repository.User.UserRepository;
 import com.Weatherlady.application.Repository.Weather.WeatherRepository;
 import com.Weatherlady.application.Service.LocationService;
+import com.Weatherlady.application.Service.WeatherService;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -36,9 +37,13 @@ public class Project {
             transaction.begin();
 
             LocationService locationService = new LocationService();
+            WeatherService weatherService = new WeatherService();
+
             Location location = locationService.addNewLocation("Klaipėda", "Žemaitija", "Lithuania");
             Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
             Location location2 = locationService.addNewLocation("Kaun2as", "Aukstaitija", "Lithuania");
+
+//            Weather weather2 = weatherService.addNewWeather(20d, "W", 20d);
 
             User edvinas = new User("Edvinas", "123456789");
             User rimantas = new User("Rimantas", "123456789");
