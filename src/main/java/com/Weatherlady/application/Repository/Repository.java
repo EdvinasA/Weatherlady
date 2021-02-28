@@ -1,4 +1,4 @@
-package com.Weatherlady.application.utils;
+package com.Weatherlady.application.Repository;
 
 import java.util.List;
 

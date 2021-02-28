@@ -1,8 +1,8 @@
 package com.Weatherlady;
 
-import com.Weatherlady.application.Location;
-import com.Weatherlady.application.UserInterface.User;
-import com.Weatherlady.application.UserInterface.UserRepository;
+import com.Weatherlady.application.Entity.Location;
+import com.Weatherlady.application.Entity.User;
+import com.Weatherlady.application.Repository.User.UserRepository;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
