@@ -2,7 +2,7 @@ package com.Weatherlady.application.Service;
 
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Exceptions.BadRequestException;
-import com.Weatherlady.application.HibernateUtils;
+import com.Weatherlady.HibernateUtils;
 import com.Weatherlady.application.Repository.Location.LocationRepository;
 
 import javax.persistence.EntityManager;
