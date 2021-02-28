@@ -49,8 +49,8 @@ public class Project {
             userRepository.save(edvinas);
             userRepository.save(rimantas);
 
-            Weather weather = new Weather(20f, "S" ,20f);
-            Weather weather1 = new Weather(22f, "W" ,80f);
+            Weather weather = new Weather(20d, "S" ,20d);
+            Weather weather1 = new Weather(22d, "W" ,80d);
 
             weather.setLocation(location);
             weather1.setLocation(location);

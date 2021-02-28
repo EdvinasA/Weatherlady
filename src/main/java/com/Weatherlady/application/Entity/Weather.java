@@ -12,18 +12,18 @@ public class Weather {
     private UUID id;
 
     @Column(nullable = false)
-    private Float Temperature;
+    private Double Temperature;
 
     @Column(nullable = false)
     private String windDirection;
 
     @Column(nullable = false)
-    private Float windSpeed;
+    private Double windSpeed;
 
     @ManyToOne
     private Location location;
 
-    public Weather(Float temperature, String windDirection, Float windSpeed) {
+    public Weather(Double temperature, String windDirection, Double windSpeed) {
         Temperature = temperature;
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
@@ -37,11 +37,11 @@ public class Weather {
         this.id = id;
     }
 
-    public Float getTemperature() {
+    public Double getTemperature() {
         return Temperature;
     }
 
-    public void setTemperature(Float temperature) {
+    public void setTemperature(Double temperature) {
         Temperature = temperature;
     }
 
@@ -53,11 +53,11 @@ public class Weather {
         this.windDirection = windDirection;
     }
 
-    public Float getWindSpeed() {
+    public Double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(Float windSpeed) {
+    public void setWindSpeed(Double windSpeed) {
         this.windSpeed = windSpeed;
     }
 
