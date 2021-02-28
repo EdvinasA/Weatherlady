@@ -1,15 +1,13 @@
-package com.Weatherlady.application.WheatherInterface;
+package com.Weatherlady.application.Entity;
 
-import javax.persistence.*;
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Weather")
 public class Weather {
-
-    @Id
-    @GeneratedValue
-    private UUID id;
 
     @Column(nullable = false)
     private Float Temperature;
@@ -20,18 +18,13 @@ public class Weather {
     @Column(nullable = false)
     private Float windSpeed;
 
+    @OneToMany
+    private Location location;
+
     public Weather(Float temperature, Float windDirection, Float windSpeed) {
         Temperature = temperature;
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public Float getTemperature() {
@@ -56,5 +49,22 @@ public class Weather {
 
     public void setWindSpeed(Float windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "Temperature=" + Temperature +
+                ", windDirection=" + windDirection +
+                ", windSpeed=" + windSpeed +
+                '}';
     }
 }

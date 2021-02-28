@@ -1,6 +1,7 @@
-package com.Weatherlady.application.LocationInterface;
+package com.Weatherlady.application.Repository.Location;
 
-import com.Weatherlady.application.utils.AbstractRepository;
+import com.Weatherlady.application.Entity.Location;
+import com.Weatherlady.application.Repository.AbstractRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
