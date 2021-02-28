@@ -1,11 +1,14 @@
 package com.Weatherlady;
 
+import com.Weatherlady.application.Controller.WeatherClient;
 import com.Weatherlady.application.Entity.Location;
-import com.Weatherlady.application.Repository.Location.LocationRepository;
 import com.Weatherlady.application.Entity.User;
-import com.Weatherlady.application.Repository.User.UserRepository;
 import com.Weatherlady.application.Entity.Weather;
+import com.Weatherlady.application.Repository.Location.LocationRepository;
+import com.Weatherlady.application.Repository.User.UserRepository;
 import com.Weatherlady.application.Repository.Weather.WeatherRepository;
+import com.Weatherlady.application.Service.LocationService;
+import com.Weatherlady.application.Service.WeatherService;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -19,6 +22,7 @@ public class Project {
             .configure("persistence.cfg.xml")
             .addAnnotatedClass(Location.class)
             .addAnnotatedClass(User.class)
+            .addAnnotatedClass(Weather.class)
             .buildSessionFactory();
 
     public static EntityManager entityManager = sessionFactory.createEntityManager();
@@ -27,31 +31,43 @@ public class Project {
     public static UserRepository userRepository = new UserRepository(entityManager);
     public static LocationRepository locationRepository = new LocationRepository(entityManager);
     public static WeatherRepository weatherRepository = new WeatherRepository(entityManager);
+    public static WeatherClient weatherClient = new WeatherClient();
 
     public void run(){
             transaction.begin();
 
-            Location location = new Location("Kaunas", "Aukstaitija", "Lithuania");
+            LocationService locationService = new LocationService();
+            WeatherService weatherService = new WeatherService();
+
+            Location location = locationService.addNewLocation("Klaipėda", "Žemaitija", "Lithuania");
+            Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
+            Location location2 = locationService.addNewLocation("Kaun2as", "Aukstaitija", "Lithuania");
+
+//            Weather weather2 = weatherService.addNewWeather(20d, "W", 20d);
+
             User edvinas = new User("Edvinas", "123456789");
-            Weather weather = new Weather(20f, 20f ,20f);
-            Weather weather1 = new Weather(22f, 10f ,80f);
-
-//            weather.setLocation(location);
-//            weather1.setLocation(location);
-
-            locationRepository.save(location);
-            userRepository.save(edvinas);
             User rimantas = new User("Rimantas", "123456789");
+
+            userRepository.save(edvinas);
             userRepository.save(rimantas);
-//            weatherRepository.save(weather);
-//            weatherRepository.save(weather1);
+
+            Weather weather = new Weather(20d, "S" ,20d);
+            Weather weather1 = new Weather(22d, "W" ,80d);
+
+            weather.setLocation(location);
+            weather1.setLocation(location);
+
+            weatherRepository.save(weather);
+            weatherRepository.save(weather1);
+
+            weatherClient.runClientInterface();
 
             List<User> users = userRepository.findAll();
             List<Location> locations = locationRepository.findAll();
-//            List<Weather> weatherList = weatherRepository.findAll();
+            List<Weather> weatherList = weatherRepository.findAll();
 
             System.out.println(locations);
-//            System.out.println(weatherList);
+            System.out.println(weatherList);
             System.out.println(users);
 
             entityManager.close();

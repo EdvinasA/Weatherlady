@@ -1,53 +1,66 @@
 package com.Weatherlady.application.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Weather")
 public class Weather {
 
-    @Column(nullable = false)
-    private Float Temperature;
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Column(nullable = false)
-    private Float windDirection;
+    private Double Temperature;
 
     @Column(nullable = false)
-    private Float windSpeed;
+    private String windDirection;
 
-    @OneToMany
+    @Column(nullable = false)
+    private Double windSpeed;
+
+    @ManyToOne
     private Location location;
 
-    public Weather(Float temperature, Float windDirection, Float windSpeed) {
+    public Weather() {
+    }
+
+    public Weather(Double temperature, String windDirection, Double windSpeed) {
         Temperature = temperature;
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
     }
 
-    public Float getTemperature() {
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Double getTemperature() {
         return Temperature;
     }
 
-    public void setTemperature(Float temperature) {
+    public void setTemperature(Double temperature) {
         Temperature = temperature;
     }
 
-    public Float getWindDirection() {
+    public String getWindDirection() {
         return windDirection;
     }
 
-    public void setWindDirection(Float windDirection) {
+    public void setWindDirection(String windDirection) {
         this.windDirection = windDirection;
     }
 
-    public Float getWindSpeed() {
+    public Double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(Float windSpeed) {
+    public void setWindSpeed(Double windSpeed) {
         this.windSpeed = windSpeed;
     }
 
@@ -62,9 +75,10 @@ public class Weather {
     @Override
     public String toString() {
         return "Weather{" +
-                "Temperature=" + Temperature +
-                ", windDirection=" + windDirection +
+                ", Temperature=" + Temperature +
+                ", windDirection='" + windDirection + '\'' +
                 ", windSpeed=" + windSpeed +
+                ", location=" + location.getCityName() +
                 '}';
     }
 }
