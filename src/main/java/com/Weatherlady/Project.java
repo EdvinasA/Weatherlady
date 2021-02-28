@@ -1,10 +1,10 @@
 package com.Weatherlady;
 
 import com.Weatherlady.application.Entity.Location;
-import com.Weatherlady.application.Repository.Location.LocationRepository;
 import com.Weatherlady.application.Entity.User;
-import com.Weatherlady.application.Repository.User.UserRepository;
 import com.Weatherlady.application.Entity.Weather;
+import com.Weatherlady.application.Repository.Location.LocationRepository;
+import com.Weatherlady.application.Repository.User.UserRepository;
 import com.Weatherlady.application.Repository.Weather.WeatherRepository;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -32,26 +32,28 @@ public class Project {
             transaction.begin();
 
             Location location = new Location("Kaunas", "Aukstaitija", "Lithuania");
+            Location location1 = new Location("Vilnius", "AAAAAA", "Lithuania");
             User edvinas = new User("Edvinas", "123456789");
-            Weather weather = new Weather(20f, 20f ,20f);
-            Weather weather1 = new Weather(22f, 10f ,80f);
+            Weather weather = new Weather(20f, "S" ,20f);
+            Weather weather1 = new Weather(22f, "W" ,80f);
 
-//            weather.setLocation(location);
-//            weather1.setLocation(location);
+            weather.setLocation(location);
+            weather1.setLocation(location);
 
             locationRepository.save(location);
             userRepository.save(edvinas);
             User rimantas = new User("Rimantas", "123456789");
             userRepository.save(rimantas);
-//            weatherRepository.save(weather);
-//            weatherRepository.save(weather1);
+            locationRepository.save(location1);
+            weatherRepository.save(weather);
+            weatherRepository.save(weather1);
 
             List<User> users = userRepository.findAll();
-            List<Location> locations = locationRepository.findAll();
-//            List<Weather> weatherList = weatherRepository.findAll();
+            List<Location> locations = locationRepository.findByName("Kaunas");
+            List<Weather> weatherList = weatherRepository.findAll();
 
             System.out.println(locations);
-//            System.out.println(weatherList);
+            System.out.println(weatherList);
             System.out.println(users);
 
             entityManager.close();

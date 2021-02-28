@@ -1,9 +1,6 @@
 package com.Weatherlady.application.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Weather")
@@ -13,15 +10,15 @@ public class Weather {
     private Float Temperature;
 
     @Column(nullable = false)
-    private Float windDirection;
+    private String windDirection;
 
     @Column(nullable = false)
     private Float windSpeed;
 
-    @OneToMany
+    @OneToMany(mappedBy = "Weather", cascade = CascadeType.ALL)
     private Location location;
 
-    public Weather(Float temperature, Float windDirection, Float windSpeed) {
+    public Weather(Float temperature, String windDirection, Float windSpeed) {
         Temperature = temperature;
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
@@ -35,11 +32,11 @@ public class Weather {
         Temperature = temperature;
     }
 
-    public Float getWindDirection() {
+    public String getWindDirection() {
         return windDirection;
     }
 
-    public void setWindDirection(Float windDirection) {
+    public void setWindDirection(String windDirection) {
         this.windDirection = windDirection;
     }
 

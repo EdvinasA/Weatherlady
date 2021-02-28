@@ -19,8 +19,9 @@ public class LocationRepository extends AbstractRepository<Location, UUID> {
         return entityManager.createQuery("FROM Location", Location.class).getResultList();
     }
 
-    public List<Location> find(String entity) {
-        TypedQuery<Location> query = entityManager.createQuery("FROM Location " + entity, Location.class);
+    public List<Location> findByName(String name) {
+        TypedQuery<Location> query = entityManager.createQuery("FROM Location WHERE cityName=:cityName", Location.class);
+        query.setParameter("cityName", name);
         return query.getResultList();
     }
 }

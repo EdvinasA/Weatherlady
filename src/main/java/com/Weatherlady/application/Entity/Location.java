@@ -1,11 +1,12 @@
 package com.Weatherlady.application.Entity;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @Table(name = "Locations")
-public class Location {
+public class Location implements Serializable {
 
     @Id
     @GeneratedValue
@@ -18,6 +19,10 @@ public class Location {
 
     @Column(nullable = false)
     private String countryName;
+
+    @ManyToOne(targetEntity = Weather.class)
+    @JoinColumn(name = "Weather_ID")
+    private Set<Weather> weatherList = new HashSet<>();
 
     public Location(String cityName, String region, String countryName) {
         this.cityName = cityName;
@@ -55,6 +60,14 @@ public class Location {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public Set<Weather> getWeatherList() {
+        return weatherList;
+    }
+
+    public void addWeatherList(Weather weather) {
+        this.weatherList.add(weather);
     }
 
     @Override
