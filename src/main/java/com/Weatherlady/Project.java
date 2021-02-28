@@ -40,9 +40,6 @@ public class Project {
             Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
             Location location2 = locationService.addNewLocation("Kaun2as", "Aukstaitija", "Lithuania");
 
-            weatherClient.runClientInterface();
-
-
             User edvinas = new User("Edvinas", "123456789");
             User rimantas = new User("Rimantas", "123456789");
 
@@ -57,6 +54,8 @@ public class Project {
 
             weatherRepository.save(weather);
             weatherRepository.save(weather1);
+
+            weatherClient.runClientInterface();
 
             List<User> users = userRepository.findAll();
             List<Location> locations = locationRepository.findAll();

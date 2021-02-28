@@ -20,7 +20,7 @@ public class WeatherRepository extends AbstractRepository<Weather, UUID> {
     }
 
     public List<Weather> find(String cityName) {
-        TypedQuery<Weather> query = entityManager.createQuery("FROM Weather WHERE cityName=:cityName", Weather.class);
+        TypedQuery<Weather> query = entityManager.createQuery("FROM Weather WHERE location.getCityName=:cityName", Weather.class);
         query.setParameter("cityName", cityName);
         return query.getResultList();
     }

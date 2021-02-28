@@ -23,8 +23,8 @@ public class WeatherClient {
             System.out.println("Welcome to the weather app what you want to do: ");
             System.out.println("1. Add a new location to the database");
             System.out.println("2. View currently added locations");
-            System.out.println("3. Download weather values");
-            System.out.println("4. Find city Average Temperature values of days");
+            System.out.println("3. Find city Average Temperature values of days");
+            System.out.println("4. Print Weather");
             System.out.println("5. Exit the application");
 
             int response = scanner.nextInt();
@@ -40,6 +40,7 @@ public class WeatherClient {
                     getAverageWeatherInCity();
                     break;
                 case 4:
+                    printWeatherList();
                     break;
                 case 5:
                     System.out.println("Your application is shutting down");
@@ -52,10 +53,13 @@ public class WeatherClient {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a name for the location: ");
         String cityName = scanner.nextLine();
-        List<Weather> weatherList = weatherRepository.find(cityName);
-        Double temperature = weatherList.stream()
-                .mapToDouble(Weather::getTemperature)
-                .sum();
+        List<Weather> weatherList = weatherRepository.findAll();
+        double temperature = 0;
+        for (int i = 0; i < weatherList.size(); i++) {
+            if (weatherList.get(i).getLocation().getCityName().equals(cityName)){
+                temperature += weatherList.get(i).getTemperature();
+            }
+        }
         System.out.println("Average temperature in " + cityName + " is: " + temperature / weatherList.size());
 
     }
@@ -70,6 +74,10 @@ public class WeatherClient {
         String countryName = scanner.nextLine();
         String response = locationController.addNewLocation(locationName, region, countryName);
         System.out.println("The new entry has been added: " + response + "\n");
+    }
+
+    private void printWeatherList() {
+        System.out.println(weatherRepository.findAll());
     }
 
     private void readAllEntries() {
