@@ -1,5 +1,7 @@
 package com.Weatherlady.application.Repository.Location;
+
 import com.Weatherlady.application.Entity.Location;
+import com.Weatherlady.application.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
