@@ -1,11 +1,13 @@
 package com.Weatherlady.application.UserInterface;
 
+import com.Weatherlady.application.utils.AbstractRepository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.UUID;
 
-public class UserRepository extends AbstractRepository<User, UUID>{
+public class UserRepository extends AbstractRepository<User, UUID> {
 
     public UserRepository(EntityManager entityManager) {
         super(entityManager, User.class);
