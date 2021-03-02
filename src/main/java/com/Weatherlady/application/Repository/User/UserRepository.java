@@ -19,8 +19,9 @@ public class UserRepository extends AbstractRepository<User, UUID> {
         return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
-    public List<User> findLongerThan() {
-        TypedQuery<User> query = entityManager.createQuery("FROM User", User.class);
+    public List<User> findWithName(String userName) {
+        TypedQuery<User> query = entityManager.createQuery("FROM User WHERE userName=:userName", User.class);
+        query.setParameter("userName", userName);
         return query.getResultList();
     }
 }
