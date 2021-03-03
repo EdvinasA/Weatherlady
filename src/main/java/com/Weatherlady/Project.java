@@ -1,5 +1,6 @@
 package com.Weatherlady;
 
+import com.Weatherlady.application.Controller.UserController;
 import com.Weatherlady.application.Controller.WeatherClient;
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Entity.User;
@@ -27,6 +28,7 @@ public class Project {
 
     public static EntityManager entityManager = sessionFactory.createEntityManager();
     public static EntityTransaction transaction = entityManager.getTransaction();
+    public static UserController userController = new UserController();
 
     public static UserRepository userRepository = new UserRepository(entityManager);
     public static LocationRepository locationRepository = new LocationRepository(entityManager);
@@ -60,7 +62,7 @@ public class Project {
             weatherRepository.save(weather);
             weatherRepository.save(weather1);
 
-            weatherClient.runClientInterface();
+            controls();
 
             List<User> users = userRepository.findAll();
             List<Location> locations = locationRepository.findAll();
@@ -73,5 +75,14 @@ public class Project {
             entityManager.close();
     }
 
+
+        public static void controls() {
+        boolean logIn = userController.logInInterface();
+        if (!logIn) {
+            System.out.println("Wrong.");
+        } else {
+            weatherClient.runClientInterface();
+        }
+        }
 
 }

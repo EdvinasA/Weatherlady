@@ -13,13 +13,14 @@ public class UserService {
     private final EntityManager entityManager = hibernateUtils.getSessionFactory().createEntityManager();
     private final UserRepository userRepository = new UserRepository(entityManager);
 
-    public void registerUser (String userName, String password) {
+    public boolean registerUser (String userName, String password) {
             if (userName.length() < 5 && findUser(userName).getUserName().equals(userName)) {
                 System.out.println("Name too short or user name already exist.");
             } else {
                 User user = new User(userName, password);
                 userRepository.save(user);
             }
+        return false;
     }
 
     public boolean loginUser(String userName, String password) {
