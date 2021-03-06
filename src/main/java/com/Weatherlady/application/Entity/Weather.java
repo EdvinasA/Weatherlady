@@ -20,7 +20,7 @@ public class Weather {
     @Column(nullable = false)
     private Double windSpeed;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Location location;
 
     public Weather() {
@@ -31,6 +31,14 @@ public class Weather {
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
     }
+
+    public Weather(Double temperature, String windDirection, Double windSpeed, Location location) {
+        Temperature = temperature;
+        this.windDirection = windDirection;
+        this.windSpeed = windSpeed;
+        this.location = location;
+    }
+
 
     public UUID getId() {
         return id;

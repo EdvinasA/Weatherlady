@@ -13,30 +13,28 @@ public class UserService {
     private final EntityManager entityManager = hibernateUtils.getSessionFactory().createEntityManager();
     private final UserRepository userRepository = new UserRepository(entityManager);
 
-    public boolean registerUser (String userName, String password) {
-            if (userName.length() < 5 && findUser(userName).getUserName().equals(userName)) {
-                System.out.println("Name too short or user name already exist.");
-            } else {
+    public void registerUser (String userName, String password) {
+        List<User> userList = userRepository.findAll();
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getUserName().equals(userName)) {
+                System.out.println("User name " + userName + " already exist.");
+                return;
+            }
+        }
                 User user = new User(userName, password);
                 userRepository.save(user);
-            }
-        return false;
     }
 
     public boolean loginUser(String userName, String password) {
-            if (findUser(userName).getUserName().equals(userName) && findUser(userName).getPassword().equals(password)) {
-                System.out.println("You signed in.");
+        List<User> userList = userRepository.findAll();
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getUserName().equals(userName) && userList.get(i).getPassword().equals(password)) {
                 return true;
-            } else{
-                System.out.println("Try signing in again.");
-                System.out.println("Or register new user.");
-                return false;
             }
+        }
+        return false;
     }
 
-    public User findUser (String userName) {
-        List<User> users = userRepository.findWithName(userName);
-        return users.get(0);
-    }
+
 
 }
