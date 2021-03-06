@@ -153,13 +153,4 @@ public class Client {
         System.out.println(weatherController.findAll());
     }
 
-    private void readAllEntries() {
-        String response = locationController.readAllLocations();
-        response = response.replaceAll("\\[]", "\n")
-                .replaceAll("\\{", "\n")
-                .replaceAll("\\}", "")
-                .replaceAll("\\]", "");
-
-        System.out.println("Your entries: " + response);
-    }
 }
