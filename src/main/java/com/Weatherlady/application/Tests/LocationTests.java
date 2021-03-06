@@ -1,15 +1,12 @@
-package test;
+package com.Weatherlady.application.Tests;
 
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Service.LocationService;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-public class LocationTets {
-
+public class LocationTests {
     private final LocationService locationService = new LocationService();
 
 
@@ -35,21 +32,19 @@ public class LocationTets {
         assertEquals(result.getCountryName(), "country");
     }
 
-            @Test
-            void addNewLocation_whenCityIsEmpty_shouldThrowException () {
-                assertThrows(Exception.class, () -> locationService.addNewLocation("", "region", "country"));
-            }
+    @Test
+    void addNewLocation_whenCityIsEmpty_shouldThrowException () {
+        assertThrows(Exception.class, () -> locationService.addNewLocation("", "region", "country"));
+    }
 
 
-            @Test
-            void addNewLocation_whenCountryNameInEmpty_shouldThrowException () {
-                assertThrows(Exception.class, () -> locationService.addNewLocation("city", "region", ""));
-            }
+    @Test
+    void addNewLocation_whenCountryNameInEmpty_shouldThrowException () {
+        assertThrows(Exception.class, () -> locationService.addNewLocation("city", "region", ""));
+    }
 
-            @Test
-            void addNewLocation_whenRegionNameInEmpty_shouldThrowException () {
-                assertThrows(Exception.class, () -> locationService.addNewLocation("city", "", ""));
-            }
-
-
+    @Test
+    void addNewLocation_whenRegionNameInEmpty_shouldThrowException () {
+        assertThrows(Exception.class, () -> locationService.addNewLocation("city", "", ""));
+    }
 }

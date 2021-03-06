@@ -1,6 +1,5 @@
 package com.Weatherlady;
 
-import com.Weatherlady.application.Controller.UserController;
 import com.Weatherlady.application.Controller.Client;
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Entity.User;

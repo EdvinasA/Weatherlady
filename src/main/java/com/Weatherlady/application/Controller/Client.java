@@ -1,6 +1,5 @@
 package com.Weatherlady.application.Controller;
 
-import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Entity.Weather;
 import com.Weatherlady.application.Service.UserService;
 
@@ -153,13 +152,4 @@ public class Client {
         System.out.println(weatherController.findAll());
     }
 
-    private void readAllEntries() {
-        String response = locationController.readAllLocations();
-        response = response.replaceAll("\\[]", "\n")
-                .replaceAll("\\{", "\n")
-                .replaceAll("\\}", "")
-                .replaceAll("\\]", "");
-
-        System.out.println("Your entries: " + response);
-    }
 }
