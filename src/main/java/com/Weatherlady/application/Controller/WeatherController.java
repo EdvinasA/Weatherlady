@@ -16,7 +16,7 @@ public class WeatherController {
 
     public String addNewWeather(Double temperature, String windDirection, Double pressure, String location) throws InternalServerException {
         try {
-            return objectMapper.writeValueAsString(weatherService.addNewWeather(temperature,windDirection, pressure));
+            return objectMapper.writeValueAsString(weatherService.addNewWeather(temperature,windDirection, pressure, location));
         } catch (JsonProcessingException e) {
             throw new InternalServerException("HTTP 500 internal server error");
         }

@@ -38,14 +38,11 @@ public class Project {
             Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
             Location location2 = locationService.addNewLocation("Kaunas", "Aukstaitija", "Lithuania");
 
-            Weather weather = weatherService.addNewWeather(20d, "S" ,20d);
-            Weather weather1 = weatherService.addNewWeather(22d, "W" ,80d);
+            Weather weather = weatherService.addNewWeather(20d, "S" ,20d, "Kaunas");
+            Weather weather1 = weatherService.addNewWeather(22d, "W" ,80d, "Kaunas");
 
             userService.registerUser("Edvinas", "123456789");
             userService.registerUser("Rimantas", "123456789");
-
-            weather.setLocation(location);
-            weather1.setLocation(location);
 
             client.runClientInterface();
 
