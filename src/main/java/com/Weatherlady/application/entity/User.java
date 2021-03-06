@@ -1,4 +1,4 @@
-package com.Weatherlady.application.Entity;
+package com.Weatherlady.application.entity;
 
 import javax.persistence.*;
 import java.util.UUID;

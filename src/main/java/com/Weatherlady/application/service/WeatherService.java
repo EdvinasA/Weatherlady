@@ -1,10 +1,10 @@
-package com.Weatherlady.application.Service;
+package com.Weatherlady.application.service;
 
 import com.Weatherlady.HibernateUtils;
-import com.Weatherlady.application.Entity.Location;
-import com.Weatherlady.application.Entity.Weather;
-import com.Weatherlady.application.Repository.Location.LocationRepository;
-import com.Weatherlady.application.Repository.Weather.WeatherRepository;
+import com.Weatherlady.application.entity.Location;
+import com.Weatherlady.application.entity.Weather;
+import com.Weatherlady.application.repository.location.LocationRepository;
+import com.Weatherlady.application.repository.weather.WeatherRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

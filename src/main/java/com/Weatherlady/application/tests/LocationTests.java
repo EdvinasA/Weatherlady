@@ -1,7 +1,7 @@
-package com.Weatherlady.application.Tests;
+package com.Weatherlady.application.tests;
 
-import com.Weatherlady.application.Entity.Location;
-import com.Weatherlady.application.Service.LocationService;
+import com.Weatherlady.application.entity.Location;
+import com.Weatherlady.application.service.LocationService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,9 +1,9 @@
-package com.Weatherlady.application.Service;
+package com.Weatherlady.application.service;
 
-import com.Weatherlady.application.Entity.Location;
-import com.Weatherlady.application.Exceptions.BadRequestException;
+import com.Weatherlady.application.entity.Location;
+import com.Weatherlady.application.exceptions.BadRequestException;
 import com.Weatherlady.HibernateUtils;
-import com.Weatherlady.application.Repository.Location.LocationRepository;
+import com.Weatherlady.application.repository.location.LocationRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

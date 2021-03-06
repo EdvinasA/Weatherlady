@@ -1,7 +1,7 @@
-package com.Weatherlady.application.Repository.User;
+package com.Weatherlady.application.repository.user;
 
-import com.Weatherlady.application.Entity.User;
-import com.Weatherlady.application.Repository.AbstractRepository;
+import com.Weatherlady.application.entity.User;
+import com.Weatherlady.application.repository.AbstractRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

@@ -1,8 +1,8 @@
-package com.Weatherlady.application.Controller;
+package com.Weatherlady.application.controller;
 
-import com.Weatherlady.application.Entity.Weather;
-import com.Weatherlady.application.Exceptions.InternalServerException;
-import com.Weatherlady.application.Service.WeatherService;
+import com.Weatherlady.application.entity.Weather;
+import com.Weatherlady.application.exceptions.InternalServerException;
+import com.Weatherlady.application.service.WeatherService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
