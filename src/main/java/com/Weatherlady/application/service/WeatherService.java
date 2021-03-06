@@ -16,12 +16,12 @@ public class WeatherService {
     private final WeatherRepository weatherRepository = new WeatherRepository(entityManager);
     private final LocationRepository locationRepository = new LocationRepository(entityManager);
 
-    public Weather addNewWeather(Double temperature, String windDirection, Double pressure, String locationName) {
+    public Weather addNewWeather(Double temperature, String windDirection, Double windSpeed, String locationName) {
         List<Location> locationList = locationRepository.findAll();
         for (int i = 0; i < locationList.size(); i++) {
             if (locationList.get(i).getCityName().equals(locationName)) {
                 Location location = locationList.get(i);
-                Weather weather = new Weather(temperature, windDirection, pressure);
+                Weather weather = new Weather(temperature, windDirection, windSpeed);
                 weather.setLocation(location);
                 weatherRepository.save(weather);
                 return weather;

@@ -86,11 +86,11 @@ public class Client {
         double temperature = scanner.nextDouble();
         System.out.println("Enter wind direction(W,S,E,N): ");
         String direction = scanner.next();
-        System.out.println("Enter pressure: ");
-        double pressure = scanner.nextDouble();
+        System.out.println("Enter wind speed: ");
+        double windSpeed = scanner.nextDouble();
         System.out.println("Enter city: ");
         String city = scanner.next();
-        weatherController.addNewWeather(temperature,direction,pressure,city);
+        weatherController.addNewWeather(temperature,direction,windSpeed,city);
     }
 
     private void loginInMenu() {
