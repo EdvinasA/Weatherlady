@@ -1,21 +1,18 @@
 package com.Weatherlady;
 
 import com.Weatherlady.application.Controller.UserController;
-import com.Weatherlady.application.Controller.WeatherClient;
+import com.Weatherlady.application.Controller.Client;
 import com.Weatherlady.application.Entity.Location;
 import com.Weatherlady.application.Entity.User;
 import com.Weatherlady.application.Entity.Weather;
-import com.Weatherlady.application.Repository.Location.LocationRepository;
-import com.Weatherlady.application.Repository.User.UserRepository;
-import com.Weatherlady.application.Repository.Weather.WeatherRepository;
 import com.Weatherlady.application.Service.LocationService;
+import com.Weatherlady.application.Service.UserService;
 import com.Weatherlady.application.Service.WeatherService;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.util.List;
 
 public class Project {
 
@@ -28,61 +25,27 @@ public class Project {
 
     public static EntityManager entityManager = sessionFactory.createEntityManager();
     public static EntityTransaction transaction = entityManager.getTransaction();
-    public static UserController userController = new UserController();
 
-    public static UserRepository userRepository = new UserRepository(entityManager);
-    public static LocationRepository locationRepository = new LocationRepository(entityManager);
-    public static WeatherRepository weatherRepository = new WeatherRepository(entityManager);
-    public static WeatherClient weatherClient = new WeatherClient();
+    public static LocationService locationService = new LocationService();
+    public static WeatherService weatherService = new WeatherService();
+    public static UserService userService = new UserService();
+    public static Client client = new Client();
 
     public void run(){
             transaction.begin();
 
-            LocationService locationService = new LocationService();
-            WeatherService weatherService = new WeatherService();
-
             Location location = locationService.addNewLocation("Klaipėda", "Žemaitija", "Lithuania");
             Location location1 = locationService.addNewLocation("Vilnius", "Aukstaitija", "Lithuania");
-            Location location2 = locationService.addNewLocation("Kaun2as", "Aukstaitija", "Lithuania");
+            Location location2 = locationService.addNewLocation("Kaunas", "Aukstaitija", "Lithuania");
 
-//            Weather weather2 = weatherService.addNewWeather(20d, "W", 20d);
+            Weather weather = weatherService.addNewWeather(20d, "S" ,20d, "Kaunas");
+            Weather weather1 = weatherService.addNewWeather(22d, "W" ,80d, "Kaunas");
 
-            User edvinas = new User("Edvinas", "123456789");
-            User rimantas = new User("Rimantas", "123456789");
+            userService.registerUser("Edvinas", "123456789");
+            userService.registerUser("Rimantas", "123456789");
 
-            userRepository.save(edvinas);
-            userRepository.save(rimantas);
-
-            Weather weather = new Weather(20d, "S" ,20d);
-            Weather weather1 = new Weather(22d, "W" ,80d);
-
-            weather.setLocation(location);
-            weather1.setLocation(location);
-
-            weatherRepository.save(weather);
-            weatherRepository.save(weather1);
-
-            controls();
-
-            List<User> users = userRepository.findAll();
-            List<Location> locations = locationRepository.findAll();
-            List<Weather> weatherList = weatherRepository.findAll();
-
-            System.out.println(locations);
-            System.out.println(weatherList);
-            System.out.println(users);
+            client.runClientInterface();
 
             entityManager.close();
     }
-
-
-        public static void controls() {
-        boolean logIn = userController.logInInterface();
-        if (!logIn) {
-            System.out.println("Wrong.");
-        } else {
-            weatherClient.runClientInterface();
-        }
-        }
-
 }

@@ -29,4 +29,18 @@ public class LocationController {
             throw new InternalServerException("HTTP 500 internal server error");
         }
     }
+
+    public Location listOfLocations(String locationName) {
+        List<Location> locationsList = locationService.readAllLocations();
+        for (int i = 0; i < locationsList.size(); i++) {
+            if (locationsList.get(i).getCityName().equals(locationName)){
+                return locationsList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public List<Location> findAll() {
+        return locationService.readAllLocations();
+    }
 }

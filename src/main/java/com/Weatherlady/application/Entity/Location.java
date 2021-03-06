@@ -20,7 +20,7 @@ public class Location implements Serializable {
     @Column(nullable = false)
     private String countryName;
 
-    @OneToMany(targetEntity = Weather.class)
+    @OneToMany(targetEntity = Weather.class,cascade = CascadeType.ALL)
     private Set<Weather> weatherList = new HashSet<>();
 
     public Location() {
