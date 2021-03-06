@@ -24,7 +24,7 @@ public class WeatherServiceTest {
         assertTrue(response.getTemperature() > -100);
         assertFalse(response.getWindDirection().isBlank());
         assertTrue(response.getWindSpeed() >= 0);
-        assertEquals(response.getLocation().getCityName(),"city");
+        assertEquals(response.getLocation().getCityName(), test.getCityName());
     }
 
 

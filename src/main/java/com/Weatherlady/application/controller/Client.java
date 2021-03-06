@@ -34,12 +34,15 @@ public class Client {
                         getAverageWeatherInCity();
                         break;
                     case 4:
-                        addWeatherForecast();
+                        getAverageWindSpeedInCity();
                         break;
                     case 5:
-                        printWeatherList();
+                        addWeatherForecast();
                         break;
                     case 6:
+                        printWeatherList();
+                        break;
+                    case 7:
                         System.out.println("Your application is shutting down");
                         return;
                 }
@@ -52,9 +55,10 @@ public class Client {
         System.out.println("1. Add a new location to the database.");
         System.out.println("2. View currently added locations.");
         System.out.println("3. Find city Average Temperature values of days.");
-        System.out.println("4. Add weather forecast.");
-        System.out.println("5. Print weather forecast.");
-        System.out.println("6. Exit the application.");
+        System.out.println("4. Find city Average wind speed values of days.");
+        System.out.println("5. Add weather forecast.");
+        System.out.println("6. Print weather forecast.");
+        System.out.println("7. Exit the application.");
     }
 
     public boolean logInInterface() {
@@ -86,11 +90,11 @@ public class Client {
         double temperature = scanner.nextDouble();
         System.out.println("Enter wind direction(W,S,E,N): ");
         String direction = scanner.next();
-        System.out.println("Enter pressure: ");
-        double pressure = scanner.nextDouble();
+        System.out.println("Enter wind speed: ");
+        double windSpeed = scanner.nextDouble();
         System.out.println("Enter city: ");
         String city = scanner.next();
-        weatherController.addNewWeather(temperature,direction,pressure,city);
+        weatherController.addNewWeather(temperature,direction,windSpeed,city);
     }
 
     private void loginInMenu() {
@@ -128,7 +132,21 @@ public class Client {
                 temperature += weatherList.get(i).getTemperature();
             }
         }
-        System.out.println("Average temperature in " + cityName + " is: " + temperature / weatherList.size());
+        System.out.println("Average wind speed in " + cityName + " is: " + temperature / weatherList.size());
+    }
+
+    private void getAverageWindSpeedInCity() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a name for the location: ");
+        String cityName = scanner.nextLine();
+        List<Weather> weatherList = weatherController.findAll();
+        double windSpeed = 0;
+        for (int i = 0; i < weatherList.size(); i++) {
+            if (weatherList.get(i).getLocation().getCityName().equals(cityName)){
+                windSpeed += weatherList.get(i).getWindSpeed();
+            }
+        }
+        System.out.println("Average temperature in " + cityName + " is: " + windSpeed / weatherList.size());
 
     }
 
