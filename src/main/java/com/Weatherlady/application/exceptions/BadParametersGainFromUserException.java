@@ -1,4 +1,4 @@
-package com.Weatherlady.application.Exceptions;
+package com.Weatherlady.application.exceptions;
 
 public class BadParametersGainFromUserException extends RuntimeException{
 

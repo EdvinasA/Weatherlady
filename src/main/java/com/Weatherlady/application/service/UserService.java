@@ -1,8 +1,8 @@
-package com.Weatherlady.application.Service;
+package com.Weatherlady.application.service;
 
 import com.Weatherlady.HibernateUtils;
-import com.Weatherlady.application.Entity.User;
-import com.Weatherlady.application.Repository.User.UserRepository;
+import com.Weatherlady.application.entity.User;
+import com.Weatherlady.application.repository.user.UserRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

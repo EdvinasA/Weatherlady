@@ -1,7 +1,7 @@
-package com.Weatherlady.application.Controller;
+package com.Weatherlady.application.controller;
 
-import com.Weatherlady.application.Entity.Weather;
-import com.Weatherlady.application.Service.UserService;
+import com.Weatherlady.application.entity.Weather;
+import com.Weatherlady.application.service.UserService;
 
 import java.util.List;
 import java.util.Scanner;
