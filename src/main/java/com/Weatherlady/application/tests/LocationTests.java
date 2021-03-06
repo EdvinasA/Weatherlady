@@ -1,6 +1,8 @@
 package com.Weatherlady.application.tests;
 
 import com.Weatherlady.application.entity.Location;
+import com.Weatherlady.application.exceptions.BadParametersGainFromUserException;
+import com.Weatherlady.application.exceptions.BadRequestException;
 import com.Weatherlady.application.service.LocationService;
 import org.junit.jupiter.api.Test;
 
@@ -34,17 +36,17 @@ public class LocationTests {
 
     @Test
     void addNewLocation_whenCityIsEmpty_shouldThrowException () {
-        assertThrows(Exception.class, () -> locationService.addNewLocation("", "region", "country"));
+        assertThrows(BadRequestException.class, () -> locationService.addNewLocation("", "region", "country"));
     }
 
 
     @Test
     void addNewLocation_whenCountryNameInEmpty_shouldThrowException () {
-        assertThrows(Exception.class, () -> locationService.addNewLocation("city", "region", ""));
+        assertThrows(BadRequestException.class, () -> locationService.addNewLocation("city", "region", ""));
     }
 
     @Test
     void addNewLocation_whenRegionNameInEmpty_shouldThrowException () {
-        assertThrows(Exception.class, () -> locationService.addNewLocation("city", "", ""));
+        assertThrows(BadRequestException.class, () -> locationService.addNewLocation("city", "", ""));
     }
 }
